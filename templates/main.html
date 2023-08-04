@@ -1,0 +1,1258 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" manifest="tkt.manifest">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#20252c">
+    <link rel="apple-touch-icon" href="{% static 'icon.png' %}"/> 
+    <link rel="apple-touch-startup-image" href="{% static 'spash_428x926.png' %}" />
+    <link rel="apple-touch-startup-image" href="{% static 'spash_414x896.png' %}" />
+    <title>Ticketmaster</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <section class="container">
+        <section class="startup">
+            <img src="{% static 't-icon.png' %}" alt="" id="screendisco">
+        </section>
+        <section class="startup-disco">
+            <img src="{% static 'fakedisco.png' %}" alt="" id="screendisco">
+        </section>
+        <section class="discover">
+            <div class="top-header">
+                <div class="header">
+                    
+                    <div class="logoname"><img src="{% static 'ticketmaster-5-logo-black-and-white2.png' %}" alt=""></div>
+                    <div class="flag"><img src="{% static 'flag.png' %}" alt=""></div>
+                </div>
+    
+                <div class="date-loc">
+                    <div class="top">
+                        <div class="info">
+
+                            <span class="name" id="first-child"><img src="{% static 'location.png' %}" alt="" style="width:18px;"> <span class="" id="discover_location">City or Zip Code</span> </span>
+                        </div>   
+                        <div class="info">
+
+                            <span class="name"><img src="{% static 'calendar (2).png' %}" alt="" style="width:18px;margin-right:.5rem;">All Dates</span>
+                        </div>                  
+                                          
+                    </div>
+                    <div class="bottom">
+                        <input type="text" placeholder="Search for artists, venues, and events">
+                        <div class="icon searchbar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="firstimg">
+                <img src="{% static '50_cent.png' %}" alt="">
+            </div>
+            <div class="slidable-bar">
+                <div class="text">
+                    <h3 class="heading">50 Cent</h3>
+                    <p style="margin-top: -.5rem;font-weight:500">Make sure you catch him on the Final Lap Tour</p>
+                    
+                </div>
+                <div class="sliders">
+                   <div class="slide-icons" style="display:flex;">
+                    <span class="material-icons"  style="color:var(--blue)">.</span>
+                    <span class="material-icons" style="color:var(--onyx)">.</span>
+                    <span class="material-icons" style="color:var(--onyx)">.</span>
+                   </div>
+                </div>
+            </div>
+            <div class="cat">
+                <div class="resize">
+                    <img src="{% static 'cat.png' %}" alt="">
+                
+                </div>
+            </div>
+
+            <footer>
+                <span style="display:flex; flex-direction:column;">
+                    <i><img src="{% static 'discover_blue.png' %}" alt=""  style="padding-top:.2rem;"></i>
+                    <p style="color:var(--blue)">Discover</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_manager()">
+                    <i><img src="{% static 'for_you_grey.png' %}" alt=""></i>
+                    <p>For You</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_event()">
+                    <i><img src="{% static 'grey_event.png' %}" alt=""></i>
+                    <p >My events</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_sell()">
+                    <i><img src="{% static 'sell_grey.png' %}" alt=""></i>
+                    <p>Sell</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_account()">
+                    <i><img src="{% static 'account_grey.png' %}" alt=""></i>
+                    <p>My Account</p>
+                </span>
+            </footer>
+        </section>
+
+        <section class="manager">
+
+            <div class="modal" id="add-modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="document.querySelector('#add-modal').style.display='none';"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span>
+                    <h2 class="modal-title">Add Event</h2>
+                    <form action="">
+                        <div class="field">
+                            <input type="text" id="stad_name_tkt" placeholder="Stadium name (e.g: MetLife Stadium)">
+                        </div>
+                        <div class="field loc">
+                            <input type="text" id="stad_city_tkt" placeholder="Stadium city (e.g: Inglewood)">
+                            <input type="text" id="stad_state_tkt" placeholder="State (e.g:CA)">
+                        </div>
+                        <div class="field">
+                            
+                        </div>
+                        <div class="field">
+                            <select name="" id="week_day_tkt">
+                                <option value="" selected disabled>Day of week</option>
+                                <option value="Sun">Sun</option>
+                                <option value="Mon">Mon</option>
+                                <option value="Tue">Tue</option>
+                                <option value="Wed">Wed</option>
+                                <option value="Thu">Thu</option>
+                                <option value="Fri">Fri</option>
+                                <option value="Sat">Sat</option>
+                            </select>
+                            <select name="" id="month_tkt">
+                                <option value="" selected disabled>Month</option>
+                            </select>
+                            <select name="" id="day_tkt">
+                                <option value="" selected disabled>Day</option>
+                            </select>
+                            <input type="hidden" name="" id="year">
+                            <select name="" id="year_tkt">
+                                <option value="" selected disabled>Year</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="time_tkt" placeholder="Time (e.g: 6:30PM)">
+                        </div>
+                        <div class="field">
+                            <input type="text" id="section_tkt" placeholder="Section">
+                            <input type="text" id="row_tkt" placeholder="Row">
+                        </div>
+                        <div class="field seat">
+                            <h3>Seat Range</h3>
+                            <div class="range">
+                                <input autocomplete="off" type="number" inputmode="numeric" id="seat_from_tkt" placeholder="1 (default)" min="1">
+                                <span>to</span>
+                                <input type="number" inputmode="numeric" id="seat_to_tkt" placeholder="4 (default)" min="1">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="text" id="barcode_tkt" placeholder="Barcode number">
+                        </div>
+                        <div class="field">
+                            <input type="text" id="type_tkt" placeholder="Ticket Type (default:TaylorSwiftTix Presale Powered By Verified Fan)">
+                        </div>
+                        <div class="field">
+                            <input type="text" id="others_tkt" placeholder="Additional ticket Info e.g(100 Level, Section 232, e.t.c)">
+                        </div>
+                        <div class="field">
+                            <input type="text" id="purchase_tkt" placeholder="purchase date (default:Tue, July 25 2023 - 11:07AM)">
+                        </div>
+                        <div class="field">
+                            <input type="text" id="entry_tkt" placeholder="Entry info (e.g: Entry Gate 1, verizon gate e.t.c, )">
+                        </div>
+                        <div class="field">
+                            <button type="button" onclick="addEvent()">Add Event</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <header>
+                <h3><span class="close-btn" onclick="switch_to_discover()"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span></h3>
+                <h3>Manager</h3>
+                <h3 onclick="document.querySelector('#add-modal').style.display='';">Add Event</h3>
+            </header>
+            <main>
+                <div class="manager-info">
+                    <h3>Name: <span id="manager-name" contenteditable="true">Bob smith</span></h3>
+                    <h3>Email: <span id="manager-email" contenteditable="true">bobsmith@email.com</span></h3>
+                    <h3>Location: <span id="manager-location" contenteditable="true">Seattle, Wa</span></h3>
+                    <button type="button" onclick="updateManagerInfo();">Update</button>
+                </div>
+                <h3 class="title"><span>My Events (<span id="no_events"></span>)</span></h3>
+                <div class="tickets-info" id="manager-tkt">
+                    
+                    <div class="tkt" >
+                        <div class="top">
+                            <small>NOT ACTIVE</small>
+                        </div>
+                        <div class="main">
+                            <div class="left">
+                                <h3>Sat, Aug 5 2023.</h3>
+                                <h3>Empower stadium at mile high</h3>
+                                <h3>Sec 231, Row 13, Seat 2 to 5</h3>
+                                <button type="button">Set Active</button>
+                            </div>
+                            <div class="right">
+                                <button type="button">Edit</button>
+                                <button type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </main>
+        </section>
+
+        <section class="events">
+            <header>
+                <h3>My Events</h3>
+                <h3>Help</h3>
+            </header>
+            <main>
+                <div class="imgbox" onclick="showTickets()">
+                    <img src="{% static '955a0c60-463c-442a-a3bb-d10aa68dc477_CUSTOM.jpg' %}" alt="">
+                    <div class="overlay"></div>
+                    <div class="text-area">
+                        <h2 class="event-title">Taylor Swift | The Eras Tour</h2>
+                        <h3 class="event-timelocation"><span id="event-date"></span><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M478-478Zm2 278q-117 0-198.5-81.5T200-480q0-117 81.5-198.5T480-760q117 0 198.5 81.5T760-480q0 117-81.5 198.5T480-200Zm0-60q92 0 156-64t64-156q0-92-64-156t-156-64q-92 0-156 64t-64 156q0 92 64 156t156 64Z"/></svg> <span class="event-location" id="event-location"></span></h2>
+                        <h4 class="event-ticket-no"><img src="{% static 'tickets (1).png' %}" alt=""> <span id="no_of_tickets"></span></h4>
+                    </div>
+                </div>
+                
+                <div class="main-footer">
+                    <span class="close-btn" onclick="removeNoti();" ontouchstart="removeNoti();"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span>
+                    <h3 class="questions">
+                        Questions Regarding Your Event's Refund or Credit Eligibility?
+                    </h3>
+                    <div class="options-can">
+                        <h3>Options can be accessed in your account via your browser</h3>
+                        <button class="button" onclick="window.location.href='https://ticketmaster.com'">Open Browser</button>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_discover()">
+                    <i><img src="{% static 'discover_grey.png' %}" alt=""  style="padding-top:.2rem;"></i>
+                    <p>Discover</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_manager()">
+                    <i><img src="{% static 'for_you_grey.png' %}" alt=""></i>
+                    <p>For You</p>
+                </span>
+                <span style="display:flex; flex-direction:column;">
+                    <i><img src="{% static 'events.png' %}" alt=""></i>
+                    <p style="color:var(--blue)">My events</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_sell()">
+                    <i><img src="{% static 'sell_grey.png' %}" alt=""></i>
+                    <p>Sell</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_account()">
+                    <i><img src="{% static 'account_grey.png' %}" alt=""></i>
+                    <p>My Account</p>
+                </span>
+            </footer>
+        </section>
+
+        <section class="tickets">
+            <header>
+                <h3><span class="close-btn" onclick="hideTickets()"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span></h3>
+                <h3>My Tickets</h3>
+                <h3>Help</h3>
+            </header>
+            <main>
+                <div class="ticketbox">
+                    <div class="ticket">
+                        <div class="top">
+                            <div class="seller">
+                                <h3 class="sellerinfo">Capital One® Cardholder Presale</h3>
+                            </div>
+                            <div class="seatinfo">
+                                <span class="s-box"><h4 class="mini">SEC</h4><h2 class="big">XXX</h2></span>
+                                <span class="s-box"><h4 class="mini">ROW</h4><h2 class="big">X</h2></span>
+                                <span class="s-box"><h4 class="mini">SEAT</h4><h2 class="big">XX</h2></span>
+                            </div>
+                        </div>
+                        <div class="mid">
+                            <img src="{% static '955a0c60-463c-442a-a3bb-d10aa68dc477_CUSTOM.jpg' %}" alt="">
+                            <div class="overlay"></div>
+                            <div class="text-area">
+                                <h3 class="title">You have No active events</h3>
+                                <h3 class="sub"><span id="event-date">tap the "for you" menu to get to the manager area</span><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M478-478Zm2 278q-117 0-198.5-81.5T200-480q0-117 81.5-198.5T480-760q117 0 198.5 81.5T760-480q0 117-81.5 198.5T480-200Zm0-60q92 0 156-64t64-156q0-92-64-156t-156-64q-92 0-156 64t-64 156q0 92 64 156t156 64Z"/></svg> <span class="event-location">Empower Field at Mile High</span></h3>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <h3 class="other">floor a</h3>
+                            <div class="buttonbox">
+                                     
+                                <button type="button">
+                                    <img src=".\static\apple-wallet-seeklogo.png' %}" alt=""> 
+                                    <h3 class="applewalletbutton" id="aw1">Add to Apple Wallet</h3>
+                                </button>
+                            </div>
+                            <div class="barcodebox">
+                                <h4>View Barcode</h4>
+                                <h4>Ticket Details</h4>
+                            </div>
+                            
+                        </div>
+                        <div class="color-bottom">
+                                
+                        </div>
+                    </div>
+ 
+                </div>
+
+                <div class="mid-dots">
+                    <div class="dots" id="dots">
+                        
+                        <span><svg id="dot2" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M478-478Zm2 278q-117 0-198.5-81.5T200-480q0-117 81.5-198.5T480-760q117 0 198.5 81.5T760-480q0 117-81.5 198.5T480-200Zm0-60q92 0 156-64t64-156q0-92-64-156t-156-64q-92 0-156 64t-64 156q0 92 64 156t156 64Z"/></svg> </span>
+                        <span><svg id="dot3" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M478-478Zm2 278q-117 0-198.5-81.5T200-480q0-117 81.5-198.5T480-760q117 0 198.5 81.5T760-480q0 117-81.5 198.5T480-200Zm0-60q92 0 156-64t64-156q0-92-64-156t-156-64q-92 0-156 64t-64 156q0 92 64 156t156 64Z"/></svg> </span>
+                    </div>
+                </div>
+                <div class="tf-sell">
+                    <button type="button">Transfer</button>
+                    <button type="button">Sell</button>
+                </div>
+
+                <div class="mapbox">
+                    <div class="map">
+                        <img src="{% static 'map.png' %}" alt="">
+                    </div>
+                    <div class="map-text"><h3 id="stad-map">Gilette Stadium</h3></div>
+                </div>
+            </main>
+        </section>
+
+        <section class="ticket-details">
+        </section>
+
+        <section class="sell">
+            <div class="main">
+                <div class="top">
+                    <div class="imgsell" style="margin-top:4.5rem;">
+                        <img src="{% static 'sell_main.png' %}" alt="">
+                    </div>
+                    <h3 style="font-size:1.3rem;color:var(--white);font-weight:100;margin-top:.5rem;animation: fadein .3s linear forwards;">Quick and Easy</h3>
+                    <p style="font-size:.8rem;color:var(--onyx);">List, sell and get paid - it's all here, right in one convenient place.</p>
+                    <div class="sliders" style="margin-top:-3rem;">
+                        <span class="material-icons"  style="color:var(--white);font-size:3.8rem;">.</span>
+                        <span class="material-icons" style="color:var(--onyx);font-size:3.8rem;">.</span>
+                    </div>
+                    <p style="color:rgb(45,106,215);margin-bottom:7rem;margin-top:.5rem;">Learn How It Works</p>
+                </div>
+                <div class="bottom"  style="">
+                    <div class="sell-t">
+                        <h3>Sell Your Tickets</h3>
+                    </div>
+                    <div class="bottom-body" style="">
+                        <div class="bar">
+                            <span class="img"><img src="{% static 'tick_sell.png' %}" alt="" style="padding:1rem .5rem 1rem 1rem;"></span>
+                            <p><span>Tickets I'm Selling</span><span class="material-symbols-rounded" style="font-size:.8rem;color:var(--onyx);padding-right:1rem;"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg></span></p>
+                        </div>
+                        <div class="bar">
+                            <span class="img"><img src="{% static 'sold_tickets.png' %}" alt=""  style="padding:1rem .5rem 1rem 1rem;"></span>
+                            <p><span>Sold Tickets </span><span class="material-symbols-rounded" style="font-size:.8rem;color:var(--onyx);padding-right:1rem;"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg></span></p>
+                        </div>
+                        <div class="bar">
+                            <span class="img"><img src="{% static 'expired.png' %}" alt="" style="padding:1rem .5rem 1rem 1rem;"></span>
+                            <p><span>Expired Tickets</span> <span class="material-symbols-rounded" style="font-size:.8rem;color:var(--onyx);padding-right:1rem;"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <footer>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_discover()">
+                    <i><img src="{% static 'discover_grey.png' %}" alt=""  style="padding-top:.2rem;"></i>
+                    <p>Discover</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_manager()">
+                    <i><img src="{% static 'for_you_grey.png' %}" alt=""></i>
+                    <p>For You</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_event()">
+                    <i><img src="{% static 'grey_event.png' %}" alt=""></i>
+                    <p >My events</p>
+                </span>
+                <span style="display:flex; flex-direction:column;">
+                    <i><img src="{% static 'sell_blue.png' %}" alt=""></i>
+                    <p style="color:var(--blue)">Sell</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_account()">
+                    <i><img src="{% static 'account_grey.png' %}" alt=""></i>
+                    <p>My Account</p>
+                </span>
+            </footer>
+
+
+        </section>
+
+        <section class="account">
+            
+            <div class="heading">
+                <h3>My Account</h3>
+            </div>
+            <div class="header">
+                <h3 id="account-name"></h3>
+                <p id="account-email"></p>
+            </div>
+            <div class="main">
+                <div class="notifications">
+                    <h3>Notifications</h3>
+                    <div class="block">
+                        <div class="block-right">
+                            <p><img src="{% static 'envelope2.png' %}" alt=""> My Notifications</p>
+                            <p><span class="material-symbols-rounded" style=font-size:1rem;>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg>
+                                </span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                      
+                        <div class="block-right" style="margin-top:-.5rem">
+                            <p><img src="{% static 'bell.png' %}" alt=""> Receive Notifications?</p>
+                            <p style="position:relative"><img src="{% static 'slider_on.png' %}" alt="" style="width:46px;height:35px;margin-top:-.2rem"></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="location-settings">
+                    <h3>Location Settings</h3>
+                    <div class="block">
+                      
+                        <div class="block-right">
+                            <p><img src="{% static 'dest.png' %}" alt=""> My Location</p>
+                            <p style="position:relative;color:var(--zima-blue)"> <span id="account-location"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span> </span> <span><img src="{% static 'edit.png' %}" alt="" style="width:18px;position:absolute;right:0rem;"></span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <span></span>
+                        <div class="block-right">
+                            <p><img src="{% static 'flag2.png' %}" alt="" style="width:20px;height:20px;margin-right:.8rem;"> My Country</p>
+                            <p style="position:relative;color:var(--zima-blue)">United States &nbsp; &nbsp; &nbsp; &nbsp; <img src="{% static 'edit.png' %}" alt="" style="width:18px;position:absolute;right:0rem;"></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <span></span>
+                        <div class="block-right" style="position:relative;margin-top:-.5rem;">
+                            <p><img src="{% static 'flight.png' %}" alt="" style="width:16px;height:16px;margin-right:1.2rem"> Location Based Content</p>
+                            <p><img src="{% static 'slider_off.png' %}" alt=""  style="width:48px;height:31px;margin-top:0rem"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prefrences">
+                    <h3>Preferences</h3>
+                    <div class="block">
+                        
+                        <div class="block-right">
+                            <p><img src="{% static 'heart.png' %}" alt="" style="width:20px;height:20px;">My Favourites</p>
+                            <p><span class="material-symbols-rounded" style=font-size:1rem;>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg>
+                                </span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <span></span>
+                        <div class="block-right">
+                            <p><img src="{% static 'walletstuff.png' %}" alt="" style="width:20px;height:20px;">Saved Payment Methods</p>
+                            <p><span class="material-symbols-rounded" style=font-size:1rem;>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg>
+                                </span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <span></span>
+                        <div class="block-right">
+                            <p><img src="{% static 'app-icoch.png' %}" alt="" style="width:20px;height:20px;">Change App Icon</p>
+                            <p><span class="material-symbols-rounded" style=font-size:1rem;>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg>
+                                </span></p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="prefrences" style="margin-top:.5rem">
+                    <h3>Help & Guidance</h3>
+                    <div class="block">
+                        <span></span>
+                        <div class="block-right">
+                            <p><img src="{% static 'question.png' %}" alt="" style="width:23px;height:23px;">Need Help?</p>
+                            <p><span class="material-symbols-rounded" style="font-size:1rem;"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg></span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <span></span>
+                        <div class="block-right">
+                            <p><img src="{% static 'pen.png' %}" alt="" style="width:20px;height:20px;">Give us Feedback</p>
+                            <p><span class="material-symbols-rounded" style="font-size:1rem;"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg></span></p>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <span></span>
+                        <div class="block-right">
+                            <p><img src="{% static 'buku.png' %}" alt="" style="width:20px;height:20px;">Legal</p>
+                            <p><span class="material-symbols-rounded" style="font-size:1rem;"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m304-82-56-57 343-343-343-343 56-57 400 400L304-82Z"/></svg></span></p>
+                        </div>
+                    </div>
+                    <div class="block" style="margin:3rem 0 2rem 0;">
+                        <span></span>
+                        <div class="block-right">
+                            <p style="color:rgb(220,86,107)"><img src="{% static 'logout.png' %}" alt="" style="width:20px;height:20px;padding-top:.2rem;">Sign Out</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+
+
+            </div>
+
+            <footer>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_discover()">
+                    <i><img src="{% static 'discover_grey.png' %}" alt=""  style="padding-top:.2rem;"></i>
+                    <p >Discover</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_manager()">
+                    <i><img src="{% static 'for_you_grey.png' %}" alt=""></i>
+                    <p>For You</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_event()">
+                    <i><img src="{% static 'grey_event.png' %}" alt=""></i>
+                    <p >My events</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" onclick="switch_to_sell()">
+                    <i><img src="{% static 'sell_grey.png' %}" alt=""></i>
+                    <p>Sell</p>
+                </span>
+                <span style="display:flex; flex-direction:column;" >
+                    <i><img src="{% static 'account-blue.png' %}" alt=""></i>
+                    <p style="color:var(--blue)">My Account</p>
+                </span>
+            </footer>
+
+
+        </section>
+    </section>
+
+
+
+
+
+    <script>
+
+
+
+        var events = document.querySelector('.events');
+        var manager = document.querySelector('.manager');
+        var tickets = document.querySelector('.tickets');
+        var discover = document.querySelector('.discover');
+        var sell = document.querySelector('.sell');
+        var account = document.querySelector('.account');
+        var startup = document.querySelector('.startup');
+        var startup_disco = document.querySelector('.startup-disco');
+
+
+        events.style.display = "none";
+        manager.style.display = "none";
+        discover.style.display = "none";
+        tickets.style.display = "none";
+        sell.style.display = "none";
+        account.style.display = "none";
+        startup_disco.style.display = "none";
+        startup.style.display = "";
+
+        function disableStartup(){
+            startup.classList.add('vanish');
+            startup.style.display = "none";
+            startup_disco.style.display="";
+            startup_disco.classList.add('appear');
+
+            setTimeout(() =>{
+                startup_disco.classList.remove('appear');
+                startup_disco.classList.add('vanish');
+                discover.style.display = "";
+                startup_disco.style.display = "none"
+            }, 1000)
+            
+
+
+
+        }
+
+        
+        setTimeout(() => {
+            disableStartup();
+        }, 2000)
+        
+
+        var managerCount = 0;
+        var managerCounter = 0;
+
+
+        if(!localStorage.getItem("events")){
+            localStorage.setItem("events",JSON.stringify([]))
+        }
+        if(!localStorage.getItem("manager_info")){
+            localStorage.setItem("manager_info",JSON.stringify({
+                name:'Bob smith',
+                email:'bobsmithy@email.com',
+                location:"seattle, WA",
+            }))
+        }
+
+
+        document.querySelector('#add-modal').style.display='none';
+
+        
+        
+
+        
+        function removeNoti(){
+            document.querySelector('.main-footer').classList.remove('add')
+            document.querySelector('.main-footer').classList.add('vanish')
+            document.querySelector('.main-footer').style.display="none";
+            
+        }
+
+        
+
+
+
+        tickets.style.marginTop="100vh";
+        function showTickets(){
+            tickets.style.marginTop=""
+            events.style.display="none";
+            document.querySelector('.ticketbox').classList.add('appear-t')
+        }
+        function hideTickets(){
+            tickets.style.marginTop="100vh"
+            events.style.display="";
+            document.querySelector('.ticketbox').classList.remove('appear-t')
+        }
+
+        
+        function display_manager_info(){
+            const info = JSON.parse(localStorage.getItem('manager_info'))
+            const events = JSON.parse(localStorage.getItem('events'))
+            const main = document.querySelector('#manager-tkt');
+
+            document.querySelector('#manager-name').innerHTML = info.name
+            document.querySelector('#manager-email').innerHTML = info.email
+            document.querySelector('#manager-location').innerHTML = info.location
+
+            document.querySelector('#no_events').innerHTML = events.length;
+
+
+            main.innerHTML = "";
+            for(var x = 0; x < events.length; x++){
+                if(!events[x].active){
+                    var data = events[x];
+                    main.innerHTML += `
+                    <div class="tkt" >
+                        <div class="top">
+                            <small>NOT ACTIVE</small>
+                            <small>id:${data.id}</small>
+
+                        </div>
+                        <div class="main">
+                            <div class="left">
+                                <h3>${data.day_of_week}, ${data.month} ${data.day}, ${data.year}</h3>
+                                <h3>${data.stadium_name}</h3>
+                                <h3>${data.stadium_city}, ${data.stadium_state}</h3>
+                                <h3>Sec ${data.sec}, Row ${data.row}, Seat ${data.seat_from} to ${data.seat_to}</h3>
+                                <button type="button" onclick="setActive(${data.id})">Set Active</button>
+                            </div>
+                            <div class="right">
+                                <button type="button">Edit</button>
+                                <button type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    `
+
+                } else {
+                    var data = events[x];
+                    main.innerHTML += `
+                    <div class="tkt active" >
+                        <div class="top">
+                            <small>ACTIVE</small>
+                            <small>id:${data.id}</small>
+
+                        </div>
+                        <div class="main">
+                            <div class="left">
+                                <h3>${data.day_of_week}, ${data.month} ${data.day}, ${data.year}</h3>
+                                <h3>${data.stadium_name}</h3>
+                                <h3>${data.stadium_city}, ${data.stadium_state}</h3>
+                                <h3>Sec ${data.sec}, Row ${data.row}, Seat ${data.seat_from} to ${data.seat_to}</h3>
+                            </div>
+                            <div class="right">
+                                <button type="button">Edit</button>
+                                <button type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                }
+            }
+
+        }
+
+
+        function add_events_info(){
+            const events = JSON.parse(localStorage.getItem('events'))
+             const tktbox = document.querySelector('.ticketbox')
+             const tktdet = document.querySelector('.ticket-details')
+         
+
+            for(var x = 0; x < events.length; x++){
+                if(events[x].active){
+                    var data = events[x]
+                    document.querySelector('#event-date').innerHTML = `${data.day_of_week.toLowerCase()}, ${data.month.toLowerCase()} ${data.day}, ${data.time.toLowerCase()} `
+                    document.querySelector('#event-location').innerHTML = `${data.stadium_name}`
+                    document.querySelector('#no_of_tickets').innerHTML = `${(parseInt(data.seat_to) - parseInt(data.seat_from)) + 1} tickets`
+
+                    tktbox.innerHTML = "";
+                    tktdet.innerHTML = "";
+                    document.querySelector('#dots').innerHTML = "";
+                    document.querySelector('#stad-map').innerHTML = data.stadium_name
+                    for(var y = parseInt(data.seat_from); y < parseInt(data.seat_to) + 1; y++){
+                        tktbox.innerHTML += `
+                        <div class="ticket">
+                            <div class="top">
+                                <div class="seller">
+                                    <h3 class="sellerinfo">${data.ticket_type}</h3>
+                                </div>
+                                <div class="seatinfo">
+                                    <span class="s-box"><h4 class="mini">SEC</h4><h2 class="big">${data.sec}</h2></span>
+                                    <span class="s-box"><h4 class="mini">ROW</h4><h2 class="big">${data.row}</h2></span>
+                                    <span class="s-box"><h4 class="mini">SEAT</h4><h2 class="big">${y}</h2></span>
+                                </div>
+                            </div>
+                            <div class="mid">
+                                <img src="{% static '955a0c60-463c-442a-a3bb-d10aa68dc477_CUSTOM.jpg' %}" alt="">
+                                <div class="overlay"></div>
+                                <div class="text-area">
+                                    <h3 class="title">Taylor Swift | The Eras Tour</h3>
+                                    <h3 class="sub"><span id="event-date">${data.day_of_week}, ${data.month} ${data.day}, ${data.time}  </span><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M478-478Zm2 278q-117 0-198.5-81.5T200-480q0-117 81.5-198.5T480-760q117 0 198.5 81.5T760-480q0 117-81.5 198.5T480-200Zm0-60q92 0 156-64t64-156q0-92-64-156t-156-64q-92 0-156 64t-64 156q0 92 64 156t156 64Z"/></svg> <span class="event-location">${data.stadium_name}</span></h3>
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <h3 class="other">${data.other_info}</h3>
+                                <div class="buttonbox">
+                                         
+                                    <button type="button">
+                                        <img src="{% static 'apple-wallet-seeklogo.png' %}" alt=""> 
+                                        <h3 class="applewalletbutton" id="aw${y}">Add to Apple Wallet</h3>
+                                    </button>
+                                </div>
+                                <div class="barcodebox">
+                                    <h4>View Barcode</h4>
+                                    <h4 onclick="viewDetails(${y})">Ticket Details</h4>
+                                </div>
+                                
+                            </div>
+                            <div class="color-bottom">
+                                    
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        `
+                        document.querySelector('#dots').innerHTML += `<span><svg id="dot${y}" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M478-478Zm2 278q-117 0-198.5-81.5T200-480q0-117 81.5-198.5T480-760q117 0 198.5 81.5T760-480q0 117-81.5 198.5T480-200Zm0-60q92 0 156-64t64-156q0-92-64-156t-156-64q-92 0-156 64t-64 156q0 92 64 156t156 64Z"/></svg> </span>`
+                        
+                        tktdet.innerHTML += `
+                        <div class="tkt-det" id="sk${y}">
+                            <header>
+                                <span class="close-btn" onclick="closeDetails(${y})"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span>
+                                
+                                <div class="header2">
+                                    
+                                    <div class="heading" style="padding-top:.2rem;">
+                                        <h3 style="font-weight:500;font-size:18px;">Ticket Details</h3>
+                                    </div>
+                                  
+                                </div>
+                            </header>
+                            
+                        
+                            <main>
+                                <div class="infobox">
+                                    <h4><b>Seat Location</b></h4>
+                                    <p>${data.sec} / ${data.row} / ${y}</p>
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>Taylor Swift | The Eras Tour</b></h4>
+                                    <p>${data.day_of_week}, ${data.month} ${data.day}, ${data.time} </p>
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>Entry info</b></h4>
+                                    <p style="text-transform:uppercase">${data.entry_info}</p>
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>Ticket info</b></h4>
+                                    
+                                    <p style="text-transform:uppercase">TAYLOR SWIFT</p>
+                                    <p style="text-transform:uppercase">THE ERAS TOUR</p>
+                                    <p style="text-transform:uppercase">PRESENTED BY CAPITAL ONE</p>
+                                    <p style="text-transform:uppercase">${data.stadium_name}</p>
+                                    <p style="text-transform:uppercase">NO PROF CAMS VID/AUD REC</p>
+                                    <p style="text-transform:uppercase">${data.day_of_week} ${data.month} ${data.day} ${data.year} ${data.time}</p>
+                                    
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>Barcode Number</b></h4>
+                                    <p style="text-transform:uppercase">${data.barcode}</p>
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>${data.stadium_name}</b></h4>
+                                    <p>${data.stadium_city}, ${data.stadium_state} US</p>
+                                </div>
+                               
+                                <div class="infobox">
+                                    <h4><b>order number</b></h4>
+                                    <p style="text-transform:uppercase">${data.order_no}</p>
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>Ticket type</b></h4>
+                                    <p>${data.ticket_type}</p>
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>Title_Purchase_Date</b></h4>
+                                    <p>${data.purchase_date}</p>
+                                </div>
+                                <div class="infobox">
+                                    <h4><b>Ticket Price</b></h4>
+                                    
+                                        <div style="display:flex;justify-content:space-between;width:100%;color:red;">
+                                            
+                                            <p contenteditable="true">TaylorSwiftTix Presale Powered By Verified Fan</p>
+                                            <p>$299.00</p>
+                                          
+                                        </div>
+                                    
+                                        <div style="display:flex;justify-content:space-between;width:100%;color:red;">
+                                            
+                                            <p>Fee</p>
+                                            <p contenteditable="true">$68.35</p>
+                                          
+                                        </div>
+                                        <div style="display:flex;justify-content:space-between;width:100%;color:red;">
+                                            <p>Grand Total</p>
+                                            <p contenteditable="true">$367.35</p>
+                                        </div>
+                                  
+                                   
+                                </div>
+                
+                                <div class="infobox" style="border-bottom:none;margin-bottom:-10rem;">
+                                    <h4><b>Terms & Conditions</b></h4>
+                                    <p style="text-transform:none">
+                                        Take care of your ticket, as it cannot be replaced if lost,stolen or destroyed, and is valid only for event and seat
+                printed on ticket. This ticket is a revocable license to
+                atend the event Ilated on the front ofthe ticket and is
+                subject to the full terms found at www.ticketmaster.com.
+                Such license may be revoked without refund for
+                noncompliance with terms. Unlawful sale or attempted
+                sale prohibited. Tickets obtained from unauthorized
+                sources may be invalid, lost, stolen, or counterfeit and if
+                so, ere veid. Meximum resale restrictons ray apply. NY:
+                if venue seats more than 5,000 persons, ticket may not
+                be resold within 1,500 feet from the physical structure of
+                this place of entertainment under penalty oflaw. IF an
+                event is not played, ticket may be exchanged for same
+                price seat for either: (3) rescheduied event, if any; or, if
+                applicable, (b) any event designated by.the place of
+                entertainment, within 12 months of original event, if
+                available. TIME, OPPONENT, ROSTERS AND DATE
+                SUBJECT TO CHANGE. This ticket may not be used for
+                adverhising. pramotlon or other ttede purpeses without
+                the written censent ofissuer. Appticable taxes are
+                included Holder assumes all risks hazards, * and dangers
+                occurring before, during or after event, including injury
+                by any cause, or arising from or relating in any way to the
+                risk of contracting a communicable disease orillness
+                (including exposure to COVID-19, a bacteria, virus, or
+                other pathogen capable of causing a communicable
+                disease or illness), however caused or contracted, and
+                hereby waives all claims and potential claims against, the
+                venue r league participants, E clubs, artists, promoters,
+                Ticketmaster, and eech of their tespecrive
+                representatives, affliates and personnel.
+                                    </p>
+                                </div>
+                                
+                            </main>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        `
+
+                   
+                    }
+
+                    break;
+                }
+            }
+
+        }
+
+
+
+        const switch_to_event = () => {
+            managerCounter = 0;
+            document.querySelector(".events").style.display="";
+            document.querySelector(".discover").style.display="none";
+            document.querySelector(".sell").style.display="none";  
+            document.querySelector(".account").style.display="none";  
+                
+            tickets.style.display = "";
+            add_events_info();
+
+            const addActiveClass = (entries, observer) => {
+                entries.forEach(entry => {
+                    var pk = `${entry.target.id}`
+                    if(entry.isIntersecting){
+                        document.getElementById(`dot${pk.replace('aw','')}`).classList.add('active')
+                    } else {
+                        document.getElementById(`dot${pk.replace('aw','')}`).classList.remove('active')
+                    }
+                })
+            }
+    
+            const observer = new IntersectionObserver(addActiveClass, options);
+            const walletButtons = document.querySelectorAll(".applewalletbutton")
+    
+            var options = {
+                threshold:.8,
+            };
+    
+            walletButtons.forEach(Wbtn => {
+                observer.observe(Wbtn);
+            })
+            setTimeout(() => {
+                document.querySelector('.main-footer').classList.add('appear')
+                document.querySelector('.main-footer').classList.remove('vanish')
+            },500);
+            setTimeout(() => {
+                document.querySelector('.main-footer').classList.add('vanish')
+                document.querySelector('.main-footer').classList.remove('add')
+            },5000);
+        }
+
+
+        const viewDetails = (id) => {
+            document.querySelector(`#sk${id}`).style.top='0';
+        }
+        const closeDetails = (id) => {
+            document.querySelector(`#sk${id}`).style.top='100vh';
+        }
+
+
+
+        function switch_to_discover(){
+            managerCounter = 0;
+            document.querySelector(".events").style.display="none";
+            const info = JSON.parse(localStorage.getItem('manager_info'))
+            document.querySelector('#discover_location').innerHTML = info.location || "City or Zip Code"
+            document.querySelector(".discover").style.display="";    
+            document.querySelector(".manager").style.display="none";  
+            document.querySelector(".sell").style.display="none";   
+            document.querySelector(".account").style.display="none";   
+            tickets.style.display = "none";
+        }
+
+
+      
+        function switch_to_manager(){
+            managerCounter += 1;
+            if(managerCounter){
+                document.querySelector(".events").style.display="none";
+                document.querySelector(".discover").style.display="none";    
+                document.querySelector(".manager").style.display="";    
+                document.querySelector(".sell").style.display="none";   
+                document.querySelector(".account").style.display="none"; 
+                tickets.style.display = "none";
+                display_manager_info()
+                dtd();
+            }
+        }
+
+        function updateManagerInfo(){
+            const info = JSON.parse(localStorage.getItem('manager_info'))
+            info.name = document.querySelector('#manager-name').innerHTML
+            info.email = document.querySelector('#manager-email').innerHTML
+            info.location = document.querySelector('#manager-location').innerHTML
+
+            localStorage.setItem('manager_info', JSON.stringify(info));
+            alert('info updated successfully !')
+        }
+
+    
+
+        function switch_to_sell(){
+            managerCounter = 0;
+            document.querySelector(".events").style.display="none";
+            document.querySelector(".discover").style.display="none";    
+            document.querySelector(".sell").style.display="";    
+            document.querySelector(".manager").style.display="none";
+            document.querySelector(".account").style.display="none";    
+            tickets.style.display = "none";
+        }
+        
+        function switch_to_account(){
+            managerCounter = 0;
+            document.querySelector(".events").style.display="none";
+            document.querySelector(".discover").style.display="none";    
+            document.querySelector(".sell").style.display="none";  
+            document.querySelector(".manager").style.display="none";    
+            tickets.style.display = "none";
+            const info = JSON.parse(localStorage.getItem('manager_info'))
+            document.querySelector('#account-name').innerHTML = info.name
+            document.querySelector('#account-email').innerHTML = info.email
+            document.querySelector('#account-location').innerHTML = info.location || "City or Zip Code"
+            document.querySelector(".account").style.display="";
+        }
+        
+        //switch_to_manager()
+
+
+        function validateModalForm(){
+            const sec = document.getElementById('section_tkt')
+                const row = document.getElementById('row_tkt')
+                const seat_to = document.getElementById('seat_to_tkt')
+                const seat_from = document.getElementById('seat_from_tkt')
+                const stadium_name = document.getElementById('stad_name_tkt')
+                const stadium_city = document.getElementById('stad_city_tkt')
+                const stadium_state = document.getElementById('stad_state_tkt')
+                const barcode_no = document.getElementById('barcode_tkt')
+                const day = document.getElementById('day_tkt')
+                const month = document.getElementById('month_tkt')
+                const year = document.getElementById('year_tkt')
+                const day_of_week = document.getElementById('week_day_tkt')
+                const other_info = document.getElementById('others_tkt')
+                const purchase_date = document.getElementById('purchase_tkt')
+                const entry_info = document.getElementById('entry_tkt')
+                const ticket_type = document.getElementById('type_tkt')
+                const time = document.getElementById('time_tkt')
+            
+                if(
+                    sec.value.value.length >= 1 && 
+                    seat_to.value.length >=1 &&
+                    seat_from.value.length >=1 &&
+                    stadium_name.value.length >=1 &&
+                    day_of_week.value.length >=1 &&
+                    month.value.length >=1 &&
+                    year.value.length >=1 &&
+                    day.value.length >=1 &&
+                    time.value.length >=1 &&
+                    other_info.value.length >=1 &&
+                    row.value.length >=1 
+                ){
+                    return true;
+                }
+                return false
+
+        }
+
+        function addEvent(){
+
+            if(validateModalForm){
+
+                `
+                var data = {
+                    sec:211,
+                    row:5,
+                    seat_from:1,
+                    seat_to:4,
+                    stadium_name:'Metlife Stadium',
+                    stadium_city:'Inglewood',
+                    stadium_state:'CA',
+                    barcode_no:'379960194835221127C',
+                    ticket_type:'TaylorSwiftTix Presale Powered By Verified Fan',
+                    day_of_week:"sat",
+                    month:'Aug',
+                    year:'2023',
+                    active:false,
+                    purchase_date:'Sat, Mar 18 2023 - 11:07AM',
+                    day:'5',
+                    time:'6:30pm',
+                    other_info:'verizon gate',
+                    entry_info:'Entry gate 3',
+                }
+                `
+                
+                var data = {}
+
+                data.sec = document.getElementById('section_tkt').value.toUpperCase()
+                data.row = document.getElementById('row_tkt').value.toUpperCase()
+                data.seat_to = document.getElementById('seat_to_tkt').value || 4
+                data.seat_from = document.getElementById('seat_from_tkt').value || 1
+                data.stadium_name = document.getElementById('stad_name_tkt').value
+                data.stadium_city = document.getElementById('stad_city_tkt').value
+                data.stadium_state = document.getElementById('stad_state_tkt').value.toUpperCase()
+                data.active = false
+                data.barcode_no = document.getElementById('barcode_tkt').value
+                data.day = document.getElementById('day_tkt').value
+                data.month = document.getElementById('month_tkt').value.toLowerCase()
+                data.year = document.getElementById('year_tkt').value
+                data.day_of_week = document.getElementById('week_day_tkt').value
+                data.other_info = document.getElementById('others_tkt').value || `SECTION ${data.sec}`
+                data.purchase_date = document.getElementById('purchase_tkt').value || 'Sat, Mar 18 2023 - 11:07AM'
+                data.entry_info = document.getElementById('entry_tkt').value
+                data.ticket_type = document.getElementById('type_tkt').value || 'TaylorSwiftTix Presale Powered By Verified Fan'
+                data.time = document.getElementById('time_tkt').value
+            
+
+
+
+
+                var allEvents = JSON.parse(localStorage.getItem('events'));
+                console.log(allEvents)
+                if(allEvents.length === 0){
+                    data.id = 1;
+                } else {
+                    data.id = allEvents[allEvents.length - 1].id + 1;
+                }
+                allEvents.push(data)
+    
+                localStorage.setItem("events",JSON.stringify(allEvents))
+                display_manager_info();
+                document.querySelector('#add-modal').style.display='none';
+            }
+
+            
+
+        }
+
+        const setActive = (id) => {
+            const events = JSON.parse(localStorage.getItem('events'))
+            for(var x = 0; x < events.length; x++){
+                var data = events[x];
+                if(data.id === id){
+                    events[x].active = true;
+                } else {
+                    events[x].active = false;
+                }
+            }
+
+            localStorage.setItem("events",JSON.stringify(events))
+            display_manager_info();
+            alert(`Event has been set as Active !!`)
+        }
+
+        function dtd(){
+            const yearSelect = document.getElementById("year");
+                            const monthSelect = document.getElementById("month_tkt");
+                            const daySelect = document.getElementById("day_tkt");
+
+                            const months = ['JAN', 'FEB', 'MAR', 'APR', 
+                            'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT',
+                            'NOV', 'DEC'];
+
+                            //Months are always the same
+                            (function populateMonths(){
+                                for(let i = 0; i < months.length; i++){
+                                    const option = document.createElement('option');
+                                    option.textContent = months[i];
+                                    monthSelect.appendChild(option);
+                                }
+                                monthSelect.value = "JAN";
+                            })();
+
+                            let previousDay;
+
+                            function populateDays(month){
+                                //Delete all of the children of the day dropdown
+                                //if they do exist
+                                while(daySelect.firstChild){
+                                    daySelect.removeChild(daySelect.firstChild);
+                                }
+                                //Holds the number of days in the month
+                                let dayNum;
+                                //Get the current year
+                                let year = yearSelect.value;
+                                if(month === 'JAN' || month === 'MAR' || 
+                                month === 'MAY' || month === 'JUL' || month === 'AUG' 
+                                || month === 'OCT' || month === 'DEC') {
+                                    dayNum = 31;
+                                } else if(month === 'APR' || month === 'JUN' 
+                                || month === 'SEP' || month === 'NOV') {
+                                    dayNum = 30;
+                                }else{
+                                    //Check for a leap year
+                                    if(new Date(year, 1, 29).getMonth() === 1){
+                                        dayNum = 29;
+                                    }else{
+                                        dayNum = 28;
+                                    }
+                                }
+                                //Insert the correct days into the day <select>
+                                for(let i = 1; i <= dayNum; i++){
+                                    const option = document.createElement("option");
+                                    option.textContent = i;
+                                    daySelect.appendChild(option);
+                                }
+                                if(previousDay){
+                                    daySelect.value = previousDay;
+                                    if(daySelect.value === ""){
+                                        daySelect.value = previousDay - 1;
+                                    }
+                                    if(daySelect.value === ""){
+                                        daySelect.value = previousDay - 2;
+                                    }
+                                    if(daySelect.value === ""){
+                                        daySelect.value = previousDay - 3;
+                                    }
+                                }
+                            }
+
+                            function populateYears(){
+                                //Get the current year as a number
+                                let year = new Date().getFullYear();
+                                //Make the previous 100 years be an option
+                                for(let i = 0; i < 101; i++){
+                                    const option = document.createElement("option");
+                                    option.textContent = year - i;
+                                    yearSelect.appendChild(option);
+                                }
+                            }
+
+                            populateDays(monthSelect.value);
+                            populateYears();
+
+                            yearSelect.onchange = function() {
+                                populateDays(monthSelect.value);
+                            }
+                            monthSelect.onchange = function() {
+                                populateDays(monthSelect.value);
+                            }
+                            daySelect.onchange = function() {
+                                previousDay = daySelect.value;
+                            }
+        }
+
+    </script>
+    
+</body>
+</html>
