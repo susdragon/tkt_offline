@@ -2,18 +2,18 @@
 
 @font-face {
     font-family: Averta;
-    src: url("./static/AvertaDemoPECuttedDemo-Regular.otf") format("opentype");
+    src: url("./AvertaDemoPECuttedDemo-Regular.otf") format("opentype");
 }
 
 
 @font-face {
     font-family: SanFrancisco;
-    src: url("./static/SFUIText-Light.otf") format("opentype");
+    src: url("./SFUIText-Light.otf") format("opentype");
 }
 
 @font-face {
     font-family: Avenir;
-    src: url(".\static\Avenir Regular.ttf");
+    src: url("./Avenir.ttf");
 }
 *{
     box-sizing: border-box;
