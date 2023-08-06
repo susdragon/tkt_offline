@@ -491,8 +491,8 @@ h2.big{
 }
 
 .sub svg{
-    width:.2rem;
-    height:.2rem;
+    width:.1rem;
+    height:.1rem;
     border-radius: 50%;
     background-color: var(--white);
     fill:var(--white);
@@ -521,9 +521,9 @@ h2.big{
 }
 
 .bottom .buttonbox img{
-    width:3rem;
+    width:1.5rem;
     height:100%;
-    margin:.2rem .5rem;
+    margin:.5rem;
     
     
 }
